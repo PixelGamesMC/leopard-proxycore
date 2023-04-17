@@ -1,0 +1,4 @@
+name: ProxyCore
+main: eu.pixelgamesmc.minecraft.proxycore.ProxyCore
+depends:
+  - SimpleCloud-Proxy
