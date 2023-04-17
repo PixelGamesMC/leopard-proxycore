@@ -46,6 +46,7 @@ dependencies {
     api("org.litote.kmongo:kmongo-id-serialization:4.8.0")
     api("net.kyori:adventure-platform-bungeecord:4.3.0")
 
+    compileOnly("eu.thesimplecloud.simplecloud:simplecloud-plugin:2.4.1")
     compileOnly("io.github.waterfallmc:waterfall-api:1.19-R0.1-SNAPSHOT")
 }
 
@@ -83,7 +84,8 @@ tasks {
 
     shadowJar {
         // helper function to relocate a package into our package
-        fun relocate(pkg: String) = relocate(pkg, "eu.pixelgamesmc.core.dependency.$pkg")
+
+        fun relocate(pkg: String) = relocate(pkg, "eu.pixelgamesmc.dependency.$pkg")
 
         // relocate cloud, and its transitive dependencies
         //relocate("com.mongodb")
