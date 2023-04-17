@@ -4,7 +4,7 @@ import eu.pixelgamesmc.minecraft.proxycore.database.PixelDatabase
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.PlayerCollection
 import net.md_5.bungee.api.event.PreLoginEvent
 import net.md_5.bungee.api.plugin.Listener
-import org.bukkit.event.EventHandler
+import net.md_5.bungee.event.EventHandler
 
 class PlayerConnectionListener: Listener {
 

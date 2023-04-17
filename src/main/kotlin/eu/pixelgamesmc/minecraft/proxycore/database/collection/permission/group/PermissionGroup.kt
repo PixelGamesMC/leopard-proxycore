@@ -1,6 +1,6 @@
 package eu.pixelgamesmc.minecraft.proxycore.database.collection.permission.group
 
-import eu.pixelgamesmc.minecraft.proxycore.bukkit.utility.codec.NamedTextColorSerializer
+import eu.pixelgamesmc.minecraft.proxycore.utility.codec.NamedTextColorSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.kyori.adventure.text.format.NamedTextColor

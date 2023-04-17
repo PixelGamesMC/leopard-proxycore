@@ -10,12 +10,15 @@ import eu.pixelgamesmc.minecraft.proxycore.database.collection.currency.Currency
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.language.LanguageCollection
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.permission.group.PermissionGroupCollection
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.permission.user.PermissionUserCollection
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences
 import net.md_5.bungee.api.plugin.Plugin
 import org.litote.kmongo.getCollection
 
 class ProxyCore: Plugin() {
 
     override fun onEnable() {
+        BungeeAudiences.create(this)
+
         PixelDatabase.connect(
             PluginUtil.loadConfiguration(this, "database", Credentials(
                 Credentials.Mongo(true, "", "database"),
