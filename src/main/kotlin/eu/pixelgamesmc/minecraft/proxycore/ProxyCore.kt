@@ -27,13 +27,13 @@ class ProxyCore: Plugin() {
             ))
         )
 
-        PixelDatabase.registerCollections { jedisPool, mongoDatabase ->
+        PixelDatabase.registerCollections { mongoDatabase ->
             listOf(
-                CacheCollection(jedisPool, mongoDatabase.getCollection()),
-                LanguageCollection(jedisPool, mongoDatabase.getCollection()),
-                PermissionUserCollection(jedisPool, mongoDatabase.getCollection()),
-                PermissionGroupCollection(jedisPool, mongoDatabase.getCollection()),
-                CurrencyCollection(jedisPool, mongoDatabase.getCollection())
+                CacheCollection(mongoDatabase.getCollection()),
+                LanguageCollection(mongoDatabase.getCollection()),
+                PermissionUserCollection(mongoDatabase.getCollection()),
+                PermissionGroupCollection(mongoDatabase.getCollection()),
+                CurrencyCollection(mongoDatabase.getCollection())
             )
         }
 

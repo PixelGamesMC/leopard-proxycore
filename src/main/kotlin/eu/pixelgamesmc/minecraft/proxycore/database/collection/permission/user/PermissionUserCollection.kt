@@ -5,22 +5,21 @@ import eu.pixelgamesmc.minecraft.proxycore.database.collection.PixelCollection
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.PlayerCollection
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
-import redis.clients.jedis.JedisPool
+import org.litote.kmongo.save
 import java.util.*
 
 class PermissionUserCollection(
-    jedisPool: JedisPool,
     collection: MongoCollection<PermissionUser>
 ): PixelCollection<PermissionUser>(
-    jedisPool, collection
+    collection
 ), PlayerCollection {
 
     fun update(permissionUser: PermissionUser) {
-        updateCache("permission_user#${permissionUser.uuid}", permissionUser)
+        collection.save(permissionUser)
     }
 
     fun getUser(uuid: UUID): PermissionUser? {
-        return getCache("permission_user#$uuid", PermissionUser::uuid eq uuid, PermissionUser::class)
+        return collection.findOne(PermissionUser::uuid eq uuid)
     }
 
     override fun playerLogin(uuid: UUID, name: String, skin: String) {

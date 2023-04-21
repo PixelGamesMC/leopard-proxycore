@@ -5,22 +5,21 @@ import eu.pixelgamesmc.minecraft.proxycore.database.collection.PixelCollection
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.PlayerCollection
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
-import redis.clients.jedis.JedisPool
+import org.litote.kmongo.save
 import java.util.*
 
 class LanguageCollection(
-    jedisPool: JedisPool,
     collection: MongoCollection<LanguageUser>
 ): PixelCollection<LanguageUser>(
-    jedisPool, collection
+    collection
 ), PlayerCollection {
 
     fun updateUser(languageUser: LanguageUser) {
-        updateCache("language_user#${languageUser.uuid}", languageUser)
+        collection.save(languageUser)
     }
 
     fun getUser(uuid: UUID): LanguageUser? {
-        return getCache("language_user#$uuid", LanguageUser::uuid eq uuid, LanguageUser::class)
+        return collection.findOne(LanguageUser::uuid eq uuid)
     }
 
     override fun playerLogin(uuid: UUID, name: String, skin: String) {

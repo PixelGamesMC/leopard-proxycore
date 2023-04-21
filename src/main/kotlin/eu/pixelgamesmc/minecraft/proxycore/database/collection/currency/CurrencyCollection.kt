@@ -5,22 +5,21 @@ import eu.pixelgamesmc.minecraft.proxycore.database.collection.PixelCollection
 import eu.pixelgamesmc.minecraft.proxycore.database.collection.PlayerCollection
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
-import redis.clients.jedis.JedisPool
+import org.litote.kmongo.save
 import java.util.*
 
 class CurrencyCollection(
-    jedisPool: JedisPool,
     collection: MongoCollection<CurrencyUser>
 ): PixelCollection<CurrencyUser>(
-    jedisPool, collection
+     collection
 ), PlayerCollection {
 
     fun updateUser(currencyUser: CurrencyUser) {
-        updateCache("currency_user#${currencyUser.uuid}", currencyUser)
+        collection.save(currencyUser)
     }
 
     fun getUser(uuid: UUID): CurrencyUser? {
-        return getCache("currency_user#$uuid", CurrencyUser::uuid eq uuid, CurrencyUser::class)
+        return collection.findOne(CurrencyUser::uuid eq uuid)
     }
 
     override fun playerLogin(uuid: UUID, name: String, skin: String) {

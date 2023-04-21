@@ -6,14 +6,12 @@ import eu.pixelgamesmc.minecraft.proxycore.database.collection.PlayerCollection
 import org.litote.kmongo.eq
 import org.litote.kmongo.findOne
 import org.litote.kmongo.setValue
-import redis.clients.jedis.JedisPool
 import java.util.*
 
 class CacheCollection(
-    jedisPool: JedisPool,
     collection: MongoCollection<CacheUser>
 ): PixelCollection<CacheUser>(
-    jedisPool, collection
+    collection
 ), PlayerCollection {
 
     fun getCacheById(uuid: UUID): CacheUser? {
