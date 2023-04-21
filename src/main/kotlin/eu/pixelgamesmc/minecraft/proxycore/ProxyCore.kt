@@ -1,5 +1,6 @@
 package eu.pixelgamesmc.minecraft.proxycore
 
+import eu.pixelgamesmc.minecraft.proxycore.command.PermissionCommand
 import eu.pixelgamesmc.minecraft.proxycore.listener.PlayerConnectionListener
 import eu.pixelgamesmc.minecraft.proxycore.listener.PlayerPermissionListener
 import eu.pixelgamesmc.minecraft.proxycore.utility.PluginUtil
@@ -37,5 +38,6 @@ class ProxyCore: Plugin() {
         }
 
         PluginUtil.registerEvents(this, PlayerConnectionListener(), PlayerPermissionListener())
+        PluginUtil.registerCommands(this, PermissionCommand())
     }
 }
